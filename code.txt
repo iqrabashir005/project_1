@@ -185,5 +185,48 @@ public:
         return paymentStatus;
     }
 };
+/* Default Constructor: Initializes member variables to default values.
+Parameterized Constructor: Initializes member variables with provided values.
+assignRequest: Assigns the maintenance request to a maintenance staff member.
+isAssigned: Checks if the request has been assigned to a staff member.
+getRequestDetails: Displays details of the maintenance request, including tenant name, issue description, and if assigned, the staff member it's assigned to.*/
+
+class MaintenanceRequest {
+private:
+    std::string tenantName;
+    std::string issueDescription;
+    bool assigned;
+    std::string assignedTo;
+
+public:
+    // Default constructor
+    MaintenanceRequest() : tenantName(""), issueDescription(""), assigned(false), assignedTo("") {}
+
+    // Constructor with parameters
+    MaintenanceRequest(std::string name, std::string description) : tenantName(name), issueDescription(description), assigned(false), assignedTo("") {}
+
+    // Method to assign the request to maintenance staff
+    void assignRequest(std::string staffName) {
+        assigned = true;
+        assignedTo = staffName;
+        std::cout << "Maintenance request assigned to " << staffName << " successfully.\n";
+    }
+
+    // Method to check if the request is assigned
+    bool isAssigned() {
+        return assigned;
+    }
+
+    // Method to get details of the maintenance request
+    void getRequestDetails() {
+        std::cout << "Tenant: " << tenantName << std::endl;
+        std::cout << "Issue Description: " << issueDescription << std::endl;
+        if (assigned) {
+            std::cout << "Assigned to: " << assignedTo << std::endl;
+        } else {
+            std::cout << "Status: Not assigned\n";
+        }
+    }
+};
 
 
