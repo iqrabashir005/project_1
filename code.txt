@@ -374,5 +374,106 @@ public:
         }
     }
 };
+int main() {
+    Authorization auth;
+
+    auth.addUser("landlord1", "landlord");
+    auth.addUser("tenant1", "tenant");
+    auth.addUser("dealer1", "property dealer");
+
+    std::cout << "Is landlord1 authorized as a landlord? " << std::boolalpha << auth.isAuthorized("landlord1", "landlord") << std::endl;
+    std::cout << "Is tenant1 authorized as a property dealer? " << std::boolalpha << auth.isAuthorized("tenant1", "property dealer") << std::endl;
+    std::cout << "Is dealer1 authorized as a tenant? " << std::boolalpha << auth.isAuthorized("dealer1", "tenant") << std::endl;
+
+    UserAuthentication userAuth;
+
+    userAuth.addUser("user1", "password1");
+    userAuth.addUser("user2", "password2");
+    userAuth.addUser("user3", "password3");
+
+    std::string username, password;
+    std::cout << "Enter username: ";
+    std::cin >> username;
+    std::cout << "Enter password: ";
+    std::cin >> password;
+
+    if (userAuth.authenticate(username, password)) {
+        std::cout << "Authentication successful!" << std::endl;
+    } else {
+        std::cout << "Authentication failed. Invalid username or password." << std::endl;
+    }
+     Property property1("City Center", 1000.0, 1500.0, "city_center_property_photos.jpg");
+    Property property2("Suburban Area", 2000.0, 2000.0, "suburban_property_photos.jpg");
+
+    std::cout << "Property 1 Details:" << std::endl;
+    property1.displayDetails();
+
+    std::cout << "\nProperty 2 Details:" << std::endl;
+    property2.displayDetails();
+
+    // Example: Updating availability
+    property1.setAvailability(false);
+
+    std::cout << "\nAfter updating availability of Property 1:" << std::endl;
+    property1.displayDetails();
+    
+    
+
+RentalAgreement agreement("Rida", "Hira", 1000.0, "Monthly");
+
+    agreement.signByOwner();
+    agreement.signByTenant();
+
+    agreement.display();
+    // Create an instance of OnlineRentPayment
+    OnlineRentPayment rentPayment("Maira", 1000.00);
+
+    // Process payment
+    rentPayment.processPayment();
+
+    // Check payment status
+    if (rentPayment.isPaymentSuccessful()) {
+        std::cout << "Payment was successful.\n";
+    } else {
+        std::cout << "Payment failed.\n";
+    }
+     MaintenanceManager manager;
+
+    // Adding maintenance requests
+    manager.addRequest("Maira", "Leaky faucet in the kitchen");
+    manager.addRequest("Simrun", "Broken door handle in the living room");
+
+    // Assigning requests to maintenance staff
+    manager.assignRequest(0, "Zara");
+    manager.assignRequest(1, "Kiran");
+
+    // Displaying all maintenance requests
+    manager.displayRequests();
+// Test the reporting and analytics feature
+    ReportingAnalytics reporting;
+
+    // Generate and display occupancy rate report
+    reporting.generateOccupancyReport();
+
+    // Generate and display rental income report
+    reporting.generateRentalIncomeReport();
+
+    // Generate and display maintenance history report
+    reporting.generateMaintenanceHistoryReport();
+ DocumentManager docManager;
+
+    // Adding documents
+    docManager.addDocument("Rental Agreement", "This is the rental agreement document.");
+    docManager.addDocument("Inspection Report", "This is the inspection report document.");
+    docManager.addDocument("Maintenance Record", "This is the maintenance record document.");
+
+    // Searching for a document
+    docManager.searchDocument("Rental Agreement");
+
+    // Displaying all documents
+    docManager.displayAllDocuments();
+
+    return 0;
+}
 
 
