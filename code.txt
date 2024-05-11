@@ -1,0 +1,26 @@
+#include <iostream>
+#include <string>
+
+/*
+class User consists of three functions
+1.constructor to set the values
+2.getUsername() to get the user name
+3.getRole() to the role of users
+
+*/
+class User {
+private:
+    std::string username;
+    std::string role;
+
+public:
+    User(const std::string& username, const std::string& role) : username(username), role(role) {}
+
+    std::string getUsername() const {
+        return username;
+    }
+
+    std::string getRole() const {
+        return role;
+    }
+};
