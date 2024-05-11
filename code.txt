@@ -308,5 +308,71 @@ public:
         std::cout << "2. Broken door handle replaced in apartment 202\n";
     }
 };
+/*
+Constructor: Initializes the head pointer to NULL when a DocumentManager object is created.
+addDocument: Adds a new document to the linked list of documents.
+searchDocument: Searches for a document by name and displays its content if found.
+displayAllDocuments: Displays details of all documents stored in the linked list.*/
+class DocumentManager {
+private:
+    // Define a structure to represent a document
+    struct Document {
+        std::string name;
+        std::string content;
+        Document* next;
+
+        Document(const std::string& n, const std::string& c) : name(n), content(c), next(NULL) {}
+    };
+
+    Document* head; // Pointer to the head of the linked list of documents
+
+public:
+    // Constructor
+    DocumentManager() : head(NULL) {}
+
+    // Method to add a new document
+    void addDocument(const std::string& name, const std::string& content) {
+        Document* newDoc = new Document(name, content);
+        if (!head) {
+            head = newDoc;
+        } else {
+            Document* current = head;
+            while (current->next) {
+                current = current->next;
+            }
+            current->next = newDoc;
+        }
+        std::cout << "Document '" << name << "' added successfully.\n";
+    }
+
+    // Method to search for a document by name
+    void searchDocument(const std::string& name) {
+        Document* current = head;
+        bool found = false;
+        while (current) {
+            if (current->name == name) {
+                std::cout << "Document '" << name << "' found:\n";
+                std::cout << current->content << std::endl;
+                found = true;
+                break;
+            }
+            current = current->next;
+        }
+        if (!found) {
+            std::cout << "Document '" << name << "' not found.\n";
+        }
+    }
+
+    // Method to display all documents
+    void displayAllDocuments() {
+        std::cout << "All Documents:\n";
+        Document* current = head;
+        while (current) {
+            std::cout << "Name: " << current->name << std::endl;
+            std::cout << "Content: " << current->content << std::endl << std::endl;
+            current = current->next;
+        }
+    }
+};
 
 
