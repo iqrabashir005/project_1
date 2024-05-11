@@ -126,5 +126,42 @@ public:
         availability = available;
     }
 };
+/*RentalAgreement (Constructor): Initializes the ownerName, tenantName, depositAmount, paymentSchedule, isSignedByOwner, and isSignedByTenant member variables when a RentalAgreement object is created.
+signByOwner: Marks the agreement as signed by the owner.
+signByTenant: Marks the agreement as signed by the tenant.
+display: Displays the details of the rental agreement, including owner, tenant, deposit amount, payment schedule, and signature status.*/
+
+
+class RentalAgreement {
+private:
+    std::string ownerName;
+    std::string tenantName;
+    double depositAmount;
+    std::string paymentSchedule;
+    bool isSignedByOwner;
+    bool isSignedByTenant;
+
+public:
+    RentalAgreement(const std::string& owner, const std::string& tenant, double deposit, const std::string& schedule)
+        : ownerName(owner), tenantName(tenant), depositAmount(deposit), paymentSchedule(schedule), isSignedByOwner(false), isSignedByTenant(false) {}
+
+    void signByOwner() {
+        isSignedByOwner = true;
+    }
+
+    void signByTenant() {
+        isSignedByTenant = true;
+    }
+
+    void display() const {
+        std::cout << "Rental Agreement Details:" << std::endl;
+        std::cout << "Owner: " << ownerName << std::endl;
+        std::cout << "Tenant: " << tenantName << std::endl;
+        std::cout << "Deposit Amount: $" << depositAmount << std::endl;
+        std::cout << "Payment Schedule: " << paymentSchedule << std::endl;
+        std::cout << "Signed by Owner: " << (isSignedByOwner ? "Yes" : "No") << std::endl;
+        std::cout << "Signed by Tenant: " << (isSignedByTenant ? "Yes" : "No") << std::endl;
+    }
+};
 
 
