@@ -98,5 +98,33 @@ public:
         return false;
     }
 };
+/*Property (Constructor): Initializes the location, size, rentalPrice, photos, and availability member variables when a Property object is created.
+displayDetails: Displays the details of the property, including location, size, rental price, photos, and availability.
+setAvailability: Updates the availability of the property.*/
+
+class Property {
+private:
+    std::string location;
+    double size;
+    double rentalPrice;
+    std::string photos;
+    bool availability;
+
+public:
+    Property(const std::string& location, double size, double rentalPrice, const std::string& photos)
+        : location(location), size(size), rentalPrice(rentalPrice), photos(photos), availability(true) {}
+
+    void displayDetails() const {
+        std::cout << "Location: " << location << std::endl;
+        std::cout << "Size: " << size << " sqft" << std::endl;
+        std::cout << "Rental Price: $" << rentalPrice << " per month" << std::endl;
+        std::cout << "Photos: " << photos << std::endl;
+        std::cout << "Availability: " << (availability ? "Available" : "Not Available") << std::endl;
+    }
+
+    void setAvailability(bool available) {
+        availability = available;
+    }
+};
 
 
