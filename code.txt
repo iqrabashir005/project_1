@@ -275,5 +275,38 @@ public:
         }
     }
 };
+/*
+generateOccupancyReport: Generates and displays an occupancy rate report.
+generateRentalIncomeReport: Generates and displays a rental income report.
+generateMaintenanceHistoryReport: Generates and displays a property maintenance history report*/
+
+class ReportingAnalytics {
+public:
+    // Method to generate occupancy rate report
+    void generateOccupancyReport() {
+        // Logic to calculate and display occupancy rates
+        std::cout << "Occupancy Rate Report:\n";
+        // Placeholder values for demonstration
+        std::cout << "Current occupancy rate: 90%\n";
+    }
+
+    // Method to generate rental income report
+    void generateRentalIncomeReport() {
+        // Logic to calculate and display rental income
+        std::cout << "Rental Income Report:\n";
+        // Placeholder values for demonstration
+        std::cout << "Total rental income for the month: $10,000\n";
+    }
+
+    // Method to generate property maintenance history report
+    void generateMaintenanceHistoryReport() {
+        // Logic to retrieve and display maintenance history
+        std::cout << "Maintenance History Report:\n";
+        // Placeholder values for demonstration
+        std::cout << "Maintenance performed in the last month:\n";
+        std::cout << "1. Leaky faucet fixed in apartment 101\n";
+        std::cout << "2. Broken door handle replaced in apartment 202\n";
+    }
+};
 
 
