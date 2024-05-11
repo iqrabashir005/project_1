@@ -24,3 +24,43 @@ public:
         return role;
     }
 };
+/*
+class Authorization consists of
+addUser: Adds a new user to the authorization system.
+isAuthorized: Checks if a given user has a specific role.
+Destructor (~Authorization): Cleans up memory by deleting dynamically allocated User objects when the Authorization object is destroyed.
+
+*/
+
+class Authorization {
+private:
+    User* users[100];
+    int numUsers;
+
+public:
+    Authorization() : numUsers(0) {}
+
+    void addUser(const std::string& username, const std::string& role) {
+        if (numUsers < 100) {
+            users[numUsers++] = new User(username, role);
+        } else {
+            std::cout << "Cannot add more users. User limit reached." << std::endl;
+        }
+    }
+
+    bool isAuthorized(const std::string& username, const std::string& requiredRole) const {
+        for (int i = 0; i < numUsers; ++i) {
+            if (users[i]->getUsername() == username && users[i]->getRole() == requiredRole) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    ~Authorization() {
+        for (int i = 0; i < numUsers; ++i) {
+            delete users[i];
+        }
+    }
+};
+
