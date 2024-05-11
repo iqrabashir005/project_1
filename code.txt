@@ -228,5 +228,52 @@ public:
         }
     }
 };
+// Define a class for managing maintenance requests
+/*
+Constructor: Initializes the numRequests member variable to 0 when a MaintenanceManager object is created.
+addRequest: Adds a new maintenance request to the array of requests.
+assignRequest: Assigns a maintenance request to a maintenance staff member.
+displayRequests: Displays details of all maintenance requests stored in the array.*/
+
+class MaintenanceManager {
+private:
+    static const int MAX_REQUESTS = 10; // Maximum number of maintenance requests
+    MaintenanceRequest requests[MAX_REQUESTS]; // Array to store maintenance requests
+    int numRequests; // Number of current maintenance requests
+
+public:
+    // Constructor
+    MaintenanceManager() : numRequests(0) {}
+
+    // Method to add a new maintenance request
+    void addRequest(const std::string& name, const std::string& description) {
+        if (numRequests < MAX_REQUESTS) {
+            requests[numRequests] = MaintenanceRequest(name, description); // Initialize MaintenanceRequest directly
+            std::cout << "New maintenance request added successfully.\n";
+            numRequests++;
+        } else {
+            std::cout << "Maximum number of maintenance requests reached.\n";
+        }
+    }
+
+    // Method to assign a request to maintenance staff
+    void assignRequest(int index, std::string staffName) {
+        if (index >= 0 && index < numRequests) {
+            requests[index].assignRequest(staffName);
+        } else {
+            std::cout << "Invalid request index.\n";
+        }
+    }
+
+    // Method to display all maintenance requests
+    void displayRequests() {
+        std::cout << "Maintenance Requests:\n";
+        for (int i = 0; i < numRequests; ++i) {
+            std::cout << "Request " << i + 1 << ":\n";
+            requests[i].getRequestDetails();
+            std::cout << std::endl;
+        }
+    }
+};
 
 
