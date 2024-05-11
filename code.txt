@@ -163,5 +163,27 @@ public:
         std::cout << "Signed by Tenant: " << (isSignedByTenant ? "Yes" : "No") << std::endl;
     }
 };
+class OnlineRentPayment {
+private:
+    std::string tenantName;
+    double amount;
+    bool paymentStatus; // true if payment is successful, false otherwise
+
+public:
+    // Constructor
+    OnlineRentPayment(std::string name, double rentAmount) : tenantName(name), amount(rentAmount), paymentStatus(false) {}
+
+    // Method to process payment
+    void processPayment() {
+        // Code to handle online payment process, for demonstration purpose, we just set payment status as true
+        paymentStatus = true;
+        std::cout << "Payment of $" << amount << " for " << tenantName << " processed successfully.\n";
+    }
+
+    // Method to check payment status
+    bool isPaymentSuccessful() {
+        return paymentStatus;
+    }
+};
 
 
