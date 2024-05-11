@@ -63,4 +63,40 @@ public:
         }
     }
 };
+/*
+Authentication class consists of three functions
+addUser: Adds a new user with a username and password to the authentication system.
+authenticate: Checks if a given username and password combination is valid.
+Constructor (UserAuthentication): Initializes the numUsers member variable to 0 when a UserAuthentication object is created.*/
+
+class UserAuthentication {
+private:
+    static const int MAX_USERS = 100;
+    std::string usernames[MAX_USERS];
+    std::string passwords[MAX_USERS];
+    int numUsers;
+
+public:
+    UserAuthentication() : numUsers(0) {}
+
+    void addUser(const std::string& username, const std::string& password) {
+        if (numUsers < MAX_USERS) {
+            usernames[numUsers] = username;
+            passwords[numUsers] = password;
+            numUsers++;
+        } else {
+            std::cout << "Cannot add more users. User limit reached." << std::endl;
+        }
+    }
+
+    bool authenticate(const std::string& username, const std::string& password) const {
+        for (int i = 0; i < numUsers; ++i) {
+            if (usernames[i] == username && passwords[i] == password) {
+                return true;
+            }
+        }
+        return false;
+    }
+};
+
 
