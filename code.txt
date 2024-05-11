@@ -228,5 +228,252 @@ public:
         }
     }
 };
+// Define a class for managing maintenance requests
+/*
+Constructor: Initializes the numRequests member variable to 0 when a MaintenanceManager object is created.
+addRequest: Adds a new maintenance request to the array of requests.
+assignRequest: Assigns a maintenance request to a maintenance staff member.
+displayRequests: Displays details of all maintenance requests stored in the array.*/
+
+class MaintenanceManager {
+private:
+    static const int MAX_REQUESTS = 10; // Maximum number of maintenance requests
+    MaintenanceRequest requests[MAX_REQUESTS]; // Array to store maintenance requests
+    int numRequests; // Number of current maintenance requests
+
+public:
+    // Constructor
+    MaintenanceManager() : numRequests(0) {}
+
+    // Method to add a new maintenance request
+    void addRequest(const std::string& name, const std::string& description) {
+        if (numRequests < MAX_REQUESTS) {
+            requests[numRequests] = MaintenanceRequest(name, description); // Initialize MaintenanceRequest directly
+            std::cout << "New maintenance request added successfully.\n";
+            numRequests++;
+        } else {
+            std::cout << "Maximum number of maintenance requests reached.\n";
+        }
+    }
+
+    // Method to assign a request to maintenance staff
+    void assignRequest(int index, std::string staffName) {
+        if (index >= 0 && index < numRequests) {
+            requests[index].assignRequest(staffName);
+        } else {
+            std::cout << "Invalid request index.\n";
+        }
+    }
+
+    // Method to display all maintenance requests
+    void displayRequests() {
+        std::cout << "Maintenance Requests:\n";
+        for (int i = 0; i < numRequests; ++i) {
+            std::cout << "Request " << i + 1 << ":\n";
+            requests[i].getRequestDetails();
+            std::cout << std::endl;
+        }
+    }
+};
+/*
+generateOccupancyReport: Generates and displays an occupancy rate report.
+generateRentalIncomeReport: Generates and displays a rental income report.
+generateMaintenanceHistoryReport: Generates and displays a property maintenance history report*/
+
+class ReportingAnalytics {
+public:
+    // Method to generate occupancy rate report
+    void generateOccupancyReport() {
+        // Logic to calculate and display occupancy rates
+        std::cout << "Occupancy Rate Report:\n";
+        // Placeholder values for demonstration
+        std::cout << "Current occupancy rate: 90%\n";
+    }
+
+    // Method to generate rental income report
+    void generateRentalIncomeReport() {
+        // Logic to calculate and display rental income
+        std::cout << "Rental Income Report:\n";
+        // Placeholder values for demonstration
+        std::cout << "Total rental income for the month: $10,000\n";
+    }
+
+    // Method to generate property maintenance history report
+    void generateMaintenanceHistoryReport() {
+        // Logic to retrieve and display maintenance history
+        std::cout << "Maintenance History Report:\n";
+        // Placeholder values for demonstration
+        std::cout << "Maintenance performed in the last month:\n";
+        std::cout << "1. Leaky faucet fixed in apartment 101\n";
+        std::cout << "2. Broken door handle replaced in apartment 202\n";
+    }
+};
+/*
+Constructor: Initializes the head pointer to NULL when a DocumentManager object is created.
+addDocument: Adds a new document to the linked list of documents.
+searchDocument: Searches for a document by name and displays its content if found.
+displayAllDocuments: Displays details of all documents stored in the linked list.*/
+class DocumentManager {
+private:
+    // Define a structure to represent a document
+    struct Document {
+        std::string name;
+        std::string content;
+        Document* next;
+
+        Document(const std::string& n, const std::string& c) : name(n), content(c), next(NULL) {}
+    };
+
+    Document* head; // Pointer to the head of the linked list of documents
+
+public:
+    // Constructor
+    DocumentManager() : head(NULL) {}
+
+    // Method to add a new document
+    void addDocument(const std::string& name, const std::string& content) {
+        Document* newDoc = new Document(name, content);
+        if (!head) {
+            head = newDoc;
+        } else {
+            Document* current = head;
+            while (current->next) {
+                current = current->next;
+            }
+            current->next = newDoc;
+        }
+        std::cout << "Document '" << name << "' added successfully.\n";
+    }
+
+    // Method to search for a document by name
+    void searchDocument(const std::string& name) {
+        Document* current = head;
+        bool found = false;
+        while (current) {
+            if (current->name == name) {
+                std::cout << "Document '" << name << "' found:\n";
+                std::cout << current->content << std::endl;
+                found = true;
+                break;
+            }
+            current = current->next;
+        }
+        if (!found) {
+            std::cout << "Document '" << name << "' not found.\n";
+        }
+    }
+
+    // Method to display all documents
+    void displayAllDocuments() {
+        std::cout << "All Documents:\n";
+        Document* current = head;
+        while (current) {
+            std::cout << "Name: " << current->name << std::endl;
+            std::cout << "Content: " << current->content << std::endl << std::endl;
+            current = current->next;
+        }
+    }
+};
+int main() {
+    Authorization auth;
+
+    auth.addUser("landlord1", "landlord");
+    auth.addUser("tenant1", "tenant");
+    auth.addUser("dealer1", "property dealer");
+
+    std::cout << "Is landlord1 authorized as a landlord? " << std::boolalpha << auth.isAuthorized("landlord1", "landlord") << std::endl;
+    std::cout << "Is tenant1 authorized as a property dealer? " << std::boolalpha << auth.isAuthorized("tenant1", "property dealer") << std::endl;
+    std::cout << "Is dealer1 authorized as a tenant? " << std::boolalpha << auth.isAuthorized("dealer1", "tenant") << std::endl;
+
+    UserAuthentication userAuth;
+
+    userAuth.addUser("user1", "password1");
+    userAuth.addUser("user2", "password2");
+    userAuth.addUser("user3", "password3");
+
+    std::string username, password;
+    std::cout << "Enter username: ";
+    std::cin >> username;
+    std::cout << "Enter password: ";
+    std::cin >> password;
+
+    if (userAuth.authenticate(username, password)) {
+        std::cout << "Authentication successful!" << std::endl;
+    } else {
+        std::cout << "Authentication failed. Invalid username or password." << std::endl;
+    }
+     Property property1("City Center", 1000.0, 1500.0, "city_center_property_photos.jpg");
+    Property property2("Suburban Area", 2000.0, 2000.0, "suburban_property_photos.jpg");
+
+    std::cout << "Property 1 Details:" << std::endl;
+    property1.displayDetails();
+
+    std::cout << "\nProperty 2 Details:" << std::endl;
+    property2.displayDetails();
+
+    // Example: Updating availability
+    property1.setAvailability(false);
+
+    std::cout << "\nAfter updating availability of Property 1:" << std::endl;
+    property1.displayDetails();
+    
+    
+
+RentalAgreement agreement("Rida", "Hira", 1000.0, "Monthly");
+
+    agreement.signByOwner();
+    agreement.signByTenant();
+
+    agreement.display();
+    // Create an instance of OnlineRentPayment
+    OnlineRentPayment rentPayment("Maira", 1000.00);
+
+    // Process payment
+    rentPayment.processPayment();
+
+    // Check payment status
+    if (rentPayment.isPaymentSuccessful()) {
+        std::cout << "Payment was successful.\n";
+    } else {
+        std::cout << "Payment failed.\n";
+    }
+     MaintenanceManager manager;
+
+    // Adding maintenance requests
+    manager.addRequest("Maira", "Leaky faucet in the kitchen");
+    manager.addRequest("Simrun", "Broken door handle in the living room");
+
+    // Assigning requests to maintenance staff
+    manager.assignRequest(0, "Zara");
+    manager.assignRequest(1, "Kiran");
+
+    // Displaying all maintenance requests
+    manager.displayRequests();
+// Test the reporting and analytics feature
+    ReportingAnalytics reporting;
+
+    // Generate and display occupancy rate report
+    reporting.generateOccupancyReport();
+
+    // Generate and display rental income report
+    reporting.generateRentalIncomeReport();
+
+    // Generate and display maintenance history report
+    reporting.generateMaintenanceHistoryReport();
+ DocumentManager docManager;
+
+    // Adding documents
+    docManager.addDocument("Rental Agreement", "This is the rental agreement document.");
+    docManager.addDocument("Inspection Report", "This is the inspection report document.");
+    docManager.addDocument("Maintenance Record", "This is the maintenance record document.");
+
+    // Searching for a document
+    docManager.searchDocument("Rental Agreement");
+
+    // Displaying all documents
+    docManager.displayAllDocuments();
+
+    return 0;
+}
 
 
